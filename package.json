@@ -1,0 +1,11 @@
+{
+  "name": "node1607_2",
+  "version": "1.0.0",
+  "description": "Second ",
+  "main": "httpServer.js",
+  "scripts": {
+    "start": "node httpServer.js"
+  },
+  "author": "Anna",
+  "license": "ISC"
+}
