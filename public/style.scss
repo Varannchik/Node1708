@@ -1,0 +1,135 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.container{
+    width: 1260px;
+    margin: 0 auto;
+}
+
+header{
+    min-height: 30px;
+    background: black;
+    color:white;
+    position: fixed;
+    padding: 10px;
+    width: 100%;
+    .header_wrap{
+        display:flex;
+        align-items: center;
+        justify-content: space-between; 
+        nav{
+            width: 50%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            &:hover{
+                color: aqua;
+            } 
+        }
+        .active{
+            color: aqua;
+        } 
+        .logo{
+            width: 100px;
+            cursor: pointer;
+            img{
+                width: 100%;
+            }
+        }
+    }       
+}
+
+.screen1{
+    height: 100vh;
+    width: 100%;
+    background: url(../public/img/bg1.jpg);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    .text{
+        padding: 30px;
+        //background: rgba(0, 0, 0, 0.7);
+        text-align: center;
+        width: 50%;
+        margin: 0 auto;
+        border-radius: 10px;
+    }
+    h1{
+        font-size: 75px; 
+        margin-bottom: 15px;   
+    }
+    h2{
+        font-size: 22px;
+        font-style: italic;
+        font-weight: 400;
+    }
+}
+
+.screen2{
+    padding: 40px 0;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrap_card{
+    display:flex;
+    align-items: center;
+    justify-content: space-evenly; 
+    margin: 30px 0;
+    .item{
+        width: 200px;
+        height: 300px;
+        border: 1px solid #ebebeb;
+        &:hover{
+             box-shadow: 2px 2px 2px  rgba(0, 0, 0, 0.2);
+        }
+       
+    }
+}
+
+
+footer{
+    background: black;
+    color:white;
+    padding: 30px 0;
+    .wrapper{
+        display:flex;
+        align-items: flex-start;
+        justify-content: space-evenly; 
+        ul{
+            list-style: none;
+            li{
+                font-weight: 400;
+                color: white;
+                text-align: center;
+                &:first-child{
+                    font-weight: 700;
+                    margin-bottom: 10px;
+                }
+                a{
+                    color: white;
+                    text-decoration: none;
+                    &:hover{
+                        color: aqua;
+                    }  
+                }
+            }
+        } 
+    }
+}
