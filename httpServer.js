@@ -1,6 +1,8 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const express = require('express');
+const app = express();
 
 const server = http.createServer((req, res) => {
     let filePath = path.join(
@@ -8,8 +10,15 @@ const server = http.createServer((req, res) => {
         'public',
         req.url === '/' ? 'index.html':req.url
     )
+    let filePathCss = path.join(
+        __dirname,
+        'public',
+        'css',        
+        'style.css'
+    )
     let extname = path.extname(filePath);
     let contentType = 'text/html';
+    
     switch(extname) {
         case '.css':
             contentType = 'text/css';
@@ -18,30 +27,36 @@ const server = http.createServer((req, res) => {
             contentType = 'text/javascript';
             break   
     }
-    fs.readFile(filePath, 'utf-8', (err, data) => {
+    
+
+    fs.readFile(filePath, 'utf-8', (err, data) => {        
         if(req.url==='/'){
             fs.readFile(__dirname + '/public/index.html','utf-8',(err, data)=>{
-                res.writeHead(200,{"Content-Type":"text/html"});
+                res.writeHead(200,{"Content-Type":"text/html"});                                              
                 res.end(data); 
-            });         
+            });            
         }else if(req.url==='/about'){
             fs.readFile(__dirname + '/public/about.html','utf-8',(err, data)=>{
-                res.writeHead(200,{"Content-Type":"text/html"});
-                res.end(data); 
+                res.writeHead(200,{"Content-Type":"text/html"});               
+                res.end(data);  
             });  
         }else if(req.url==='/blog'){
             fs.readFile(__dirname + '/public/blog.html','utf-8',(err, data)=>{
-                res.writeHead(200,{"Content-Type":"text/html"});
+                res.writeHead(200,{"Content-Type":"text/html"});                
                 res.end(data); 
-            });  
+            });
         }else{
             fs.readFile(__dirname + '/public/404.html','utf-8',(err, data)=>{
-                res.writeHead(404,{"Content-Type":"text/html"});
+                res.writeHead(404,{"Content-Type":"text/html"});               
                 res.end(data); 
             });  
         }
-    });
+        
+        app.use(express.static(__dirname + '/public/css'));
+
+    });    
 });
+
 
 
 const PORT=process.env.PORT || 3000;
