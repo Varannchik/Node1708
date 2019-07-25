@@ -1,7 +1,7 @@
 {
-  "name": "node1607_2",
+  "name": "nod",
   "version": "1.0.0",
-  "description": "Second ",
+  "description": "",
   "main": "httpServer.js",
   "scripts": {
     "start": "node httpServer.js"

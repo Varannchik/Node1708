@@ -1,8 +1,6 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const express = require('express');
-const app = express();
 
 const server = http.createServer((req, res) => {
     let filePath = path.join(
@@ -10,12 +8,7 @@ const server = http.createServer((req, res) => {
         'public',
         req.url === '/' ? 'index.html':req.url
     )
-    let filePathCss = path.join(
-        __dirname,
-        'public',
-        'css',        
-        'style.css'
-    )
+   
     let extname = path.extname(filePath);
     let contentType = 'text/html';
     
@@ -25,7 +18,10 @@ const server = http.createServer((req, res) => {
             break
         case '.js':
             contentType = 'text/javascript';
-            break   
+            break
+        case '.jpg':
+            contentType = 'image/jpeg';
+        break      
     }
     
 
@@ -34,12 +30,28 @@ const server = http.createServer((req, res) => {
             fs.readFile(__dirname + '/public/index.html','utf-8',(err, data)=>{
                 res.writeHead(200,{"Content-Type":"text/html"});                                              
                 res.end(data); 
-            });            
+            });
+                     
         }else if(req.url==='/about'){
             fs.readFile(__dirname + '/public/about.html','utf-8',(err, data)=>{
                 res.writeHead(200,{"Content-Type":"text/html"});               
                 res.end(data);  
-            });  
+            });
+        }else if(req.url==='/style.css'){
+            fs.readFile(__dirname + '/public/style.css','utf-8',(err, data)=>{
+                res.writeHead(200,{"Content-Type":"text/css"});               
+                res.end(data);  
+            });
+        }else if(req.url==='/img/logo.jpg'){
+            fs.readFile(__dirname + '/public/img/logo.jpg','utf-8',(err, data)=>{
+                res.writeHead(200,{"Content-Type":"image/jpg"});               
+                res.end(data);  
+            });
+        }else if(req.url==='/img/bg1.jpg'){
+            fs.readFile(__dirname + '/public/img/bg1.jpg','utf-8',(err, data)=>{
+                res.writeHead(200,{"Content-Type":"image/jpg"});               
+                res.end(data);  
+            });
         }else if(req.url==='/blog'){
             fs.readFile(__dirname + '/public/blog.html','utf-8',(err, data)=>{
                 res.writeHead(200,{"Content-Type":"text/html"});                
@@ -52,7 +64,6 @@ const server = http.createServer((req, res) => {
             });  
         }
         
-        app.use(express.static(__dirname + '/public/css'));
 
     });    
 });
